@@ -1,0 +1,13 @@
+{
+  "name": "ExpressApp",
+  "version": "0.0.1",
+  "description": "A Node.js App using express",
+  "dependencies": {
+    "body-parser": "~1.0.1",
+    "cookie-parser": "~1.0.1",
+    "express": "~4.0.0",
+    "express-session": "~1.0.2",
+    "socket.io": "^1.7.4"
+  },
+  "engine": "node >=0.6.x"
+}
