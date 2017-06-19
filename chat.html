@@ -24,15 +24,38 @@
     <script>
       $(function () {
         var socket = io('http://192.168.3.37:8080');
+        var a=0;
+        var b=0;
         $('form').submit(function(){
           socket.emit('chat message', $('#m').val());
           $('#m').val('');
+
           return false;
         });
-        socket.on('chat message', function(msg){
-          $('#messages').append($('<li>').text(msg));
+        socket.on('chat message', function(data){
+           
+           console.log("ais "+a);
+           console.log("bis"+b);
+       
+          //$('#messages').append($('<li>').text('<b>'data.nick ': </b>'data.msg));
+
+          $('#messages').append('<span class="msg"><b>'+data.nick+': </b>'+data.msg +"</span><br/>");
+
           window.scrollTo(0, document.body.scrollHeight);
+        
         });
+        socket.on('load old msgs', function(docs){
+        for(var i=0;i < docs.length;i++){
+          displayMsg(docs[i]);
+        }
+        
+
+      });
+        function displayMsg(data){
+       //$('#messages').append($('<li>').text('<b>'data.nick' : </b>'data.msg));
+       $('#messages').append('<span class="msg"><b>'+data.nick+': </b>'+data.msg +"</span><br/>");
+
+      }
       });
     </script>
   </body>
